@@ -4,4 +4,4 @@ else
     dir=$1
 fi
 
-find $dir -type f -exec du -ah {} + | sort -h -r
+find $dir -type f -exec du -k {} + | sort -n -r
