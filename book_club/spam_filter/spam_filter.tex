@@ -16,14 +16,19 @@
 %SetFonts
 
 
-\title{Spam Filter Math}
+\title{Spam Filter Methodology}
 \author{Andrew Candela}
 %\date{}							% Activate to display a given date or no date
 
 \begin{document}
 \maketitle
 \newpage
-\section*{The Idea}Assuming that I have a vocabulary of words \(\mathcal{W}\), the probability of a message containing some vector of words given that the message is spam (and similarly for a message that is not spam) is \[P(\,W_1 = x_1,\, \ldots \,, W_n = x_n \mid S \,) = \prod_{w_i \in \mathcal{W}}P(\,W_i=x_i\mid S\,)\] assuming that each of the \(W_i\)'s are independent \footnote{The assumption of independence of the \(W_i \)s is a simplifying one, but perhaps not a realistic one. I suppose I could try to cluster words into 'phrases' and then treat each phrase as an event. I would be able to apply this model and would address the concern that my independence assumption is invalid. Let's first get this to work for single words, and then move on from there.}. Here each \(W_i\) is a RV where 
+\section*{The Idea}
+The goal of this exercise is to take an email or other message and determine if it is spam or not. I would like to create a function $f: m \rightarrow [0,1]$ that acts on a message $m$ and returns a probability that this message is spam. This function will break the given message up into single words, and for each word observe the frequency of spam and nonspam messages that are observed that contain that word. From this we can estimate the probability that the given message is spam.
+
+Loosely speaking, if a message contains many words that are commonly found in a spam message, say 'offer' or 'deal', then intuitively we would want to assign a high spam probability to this message.
+
+Lets say I have a message $m$ composed of a set of words \(\mathcal{W}\). The probability that a message would contain this set of words given that the message is spam (and similarly for a message that is not spam) is \[P(\,W_1 = x_1,\, \ldots \,, W_n = x_n \mid S \,) = \prod_{w_i \in \mathcal{W}}P(\,W_i=x_i\mid S\,)\] assuming that each of the \(W_i\)'s are independent \footnote{The assumption of independence of the \(W_i \)s is a simplifying one, but perhaps not a realistic one. I suppose I could try to cluster words into 'phrases' and then treat each phrase as an event. I would be able to apply this model and would address the concern that my independence assumption is invalid. Let's first get this to work for single words, and then move on from there.}. Here each \(W_i\) is a RV where 
 \[
 W_i= \begin{cases}
 1, & \text{if } w_i \text{ is in the message} \\
