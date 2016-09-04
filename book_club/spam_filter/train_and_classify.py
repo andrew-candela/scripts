@@ -2,7 +2,7 @@ import glob, re
 import random
 import filter_functions as ff 
 
-path='./spam/*/*'
+path='./spam_corpus/*/*'
 
 data=[]
 
