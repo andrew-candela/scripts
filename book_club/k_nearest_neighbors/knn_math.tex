@@ -16,7 +16,7 @@
 %SetFonts
 
 
-\title{A KNN Like Algorithm}
+\title{A Weighted Average}
 \author{Andrew Candela}
 %\date{}							% Activate to display a given date or no date
 
@@ -36,7 +36,7 @@ Specifically, we want the following two conditions to hold:
 \frac{W_i}{W_j}=\frac{D_i}{D_j}
 \end{equation}
 We can combine the two conditions above to arrive at the following assignment for the wieghts:\[W_i=\frac{D_i}{\sum_{i=1}^{n}D_i}\]
-weights $w()$ and distances $d()$ to be related in the following way: $w(i)/w(j) = d(i)/d(j)$ for any two points $i \neq j$. Or, equivalently: \[\]
+In the process of writing this I realized that it is far simpler than I originally thought it would be. It's almost not even worth sharing... but I suppose I need the practice.
 
 
 \section*{Algorithm}
