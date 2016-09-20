@@ -1,0 +1,56 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{bm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\newcommand{\ffrac}[2]{\ensuremath{\frac{\displaystyle #1}{\displaystyle #2}}}
+\setlength{\skip\footins}{1cm}
+
+%SetFonts
+
+%SetFonts
+
+
+\title{A KNN Like Algorithm}
+\author{Andrew Candela}
+%\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+\section*{Motivation}Imagine that you are considering opening a gas station. You know you can secure a regular fuel delivery for \$2.5 per gallon. But can you justify charging your future customers more than that? In order to quickly estimate what you might be able to charge, you look up the cost per gallon at 10 nearby gas stations. Your challenge now is to come up with a reasonable estimate for what you should charge based on what everyone around you is charging.
+Your estimate should satisfy a few properties. It should:
+\begin{itemize}
+\item{Behave like a weighted average of the prices of the other stations (the sum of the weights must equal 1)}
+\item{Give greater weight to stations that are closer to you and less to stations that are farther away.}
+\end{itemize}
+Specifically, we want the following two conditions to hold:
+\begin{equation}
+\sum_{i=1}^n W_i = 1
+\end{equation}
+\begin{equation}
+\frac{W_i}{W_j}=\frac{D_i}{D_j}
+\end{equation}
+
+weights $w()$ and distances $d()$ to be related in the following way: $w(i)/w(j) = d(i)/d(j)$ for any two points $i \neq j$. Or, equivalently: \[\]
+
+
+\section*{Algorithm}
+The inputs here are the point $P=(x,y)$ at which we wish to have our estimate evaluated, and a dataset composed of 3 vectors: 
+\begin{itemize}
+\item{the x coordinate $\bm{X}$} 
+\item{the y coordinate $\bm{Y}$} 
+\item{the value to be estimated $\bm{V}$}
+\end{itemize}
+We can now build a distance vector $\bf{D}$ as 
+\[
+D_i=\sqrt{(X_i - x)^2+(Y_i - y)^2}
+\]
+
+
+
+\end{document}  

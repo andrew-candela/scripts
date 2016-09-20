@@ -35,7 +35,8 @@ def knn_weighted(data_df,point_to_estimate):
 	data_df['weight']=weight_base*d_min*np.reciprocal(data_df['distance'])	
 	#estimate value
 	data_df['weighted_scores']=data_df['val']*data_df['weight']
-	return data_df.sum()['weighted_scores']
+	estimate=data_df.sum()['weighted_scores']
+	dataset.drop(['weighted_scores','distance','weight','recip_distance'],axis=1,inplace=True)
 
 
 #run the script
