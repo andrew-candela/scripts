@@ -30,12 +30,12 @@ Your estimate should satisfy a few properties. It should:
 \end{itemize}
 Specifically, we want the following two conditions to hold:
 \begin{equation}
-\sum_{i=1}^n W_i = 1
+\sum_{i=1}^n W_i = 1 \text{ and } W_i \in (0,1] \text{ for all } i
 \end{equation}
 \begin{equation}
 \frac{W_i}{W_j}=\frac{D_i}{D_j}
 \end{equation}
-We can combine 
+We can combine the two conditions above to arrive at the following assignment for the wieghts:\[W_i=\frac{D_i}{\sum_{i=1}^{n}D_i}\]
 weights $w()$ and distances $d()$ to be related in the following way: $w(i)/w(j) = d(i)/d(j)$ for any two points $i \neq j$. Or, equivalently: \[\]
 
 
@@ -46,10 +46,13 @@ The inputs here are the point $P=(x,y)$ at which we wish to have our estimate ev
 \item{the y coordinate $\bm{Y}$} 
 \item{the value to be estimated $\bm{V}$}
 \end{itemize}
-We can now build a distance vector $\bf{D}$ as 
+We can now build a distance vector $\bm{D}$ as 
 \[
 D_i=\sqrt{(X_i - x)^2+(Y_i - y)^2}
 \]
+and a weight vector $\bm{W}$ as 
+\[W_i = \frac{D_i}{\sum_{i=1}^{n}D_i}\]
+and then the estimate $E$ as $E = \bm{W} \cdot \bm{V}$
 
 
 
