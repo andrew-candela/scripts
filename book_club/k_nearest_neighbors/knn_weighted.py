@@ -24,19 +24,13 @@ def knn_weighted(data_df,point_to_estimate):
 	data_df.columns=['x','y','val']
 	#build distances into data_df
 	data_df['distance']=np.sqrt(((data_df['x']-point_to_estimate[0])**2) + ((data_df['y']-point_to_estimate[1])**2))
-	#the condition is that w[i]/w[j] = distance[j]/distance[i]
-	#or w[i]=w[min]*(d[min]*d[i])
-	#impose the condition 1=w[min]*d[min]*sum(1/d[i])
-	#this will let us solve for w[min]
-	d_min=data_df.min()['distance']
-	data_df['recip_distance']=np.reciprocal(data_df['distance'])
-	weight_base=np.reciprocal(d_min * data_df.sum()['recip_distance'])
-	#now I know the initial weight, let's calculate the full weight vector
-	data_df['weight']=weight_base*d_min*np.reciprocal(data_df['distance'])	
+	#the condition is that w[i]=distance[i]/total_distance
+	total_distance=data_df.sum()['distance']
+	data_df['weight']=np.reciprocal(total_distance)*data_df['distance']
 	#estimate value
 	data_df['weighted_scores']=data_df['val']*data_df['weight']
 	estimate=data_df.sum()['weighted_scores']
-	dataset.drop(['weighted_scores','distance','weight','recip_distance'],axis=1,inplace=True)
+	dataset.drop(['weighted_scores','distance','weight'],axis=1,inplace=True)
 	return estimate
 
 
